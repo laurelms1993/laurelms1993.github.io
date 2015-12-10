@@ -27,7 +27,7 @@ body{
 }
 @media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
 	.announcement{
-		padding-top: 15px 20px;
+		padding: 15px 20px;
 		font-size: 16px;
 	}
 	.announcement .title{
