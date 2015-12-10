@@ -1,7 +1,9 @@
-#header{
-	width: 100%;
-	height: 300px;
-}
 body{
-	background: #686868;
+	background: #FFF8DC;
+}
+.announcement{
+	width: 60%;
+	margin: 40px auto;
+	border: #aaa 4px solid;
+	border-radius: 4px;
 }
