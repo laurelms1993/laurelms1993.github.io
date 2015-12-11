@@ -71,7 +71,7 @@ body{
 	}
 }
 @media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
-	.image_frame.many, .image_frame{
+	.image_frame.many, .image_frame, .image_frame.start{
 		width: 90%;
 		padding-right: 20px;
 	}
