@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="tinderVotes" ng-controller="tinderVotesController">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -9,22 +9,40 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
   	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
-
+		<script type="text/javascript" src="./mypage.js" ></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
 	<body> 
-		<div class="announcement clearfix">
+		<div class="announcement clearfix" ng-show="!sounds_good" >
 			<div class="title">
 				Hello and thank you for visiting!
 			</div>
 			<div>You'll be shown an image for a fraction of a second and then you will select "YES" or "NO" below it to indicate if, from what you saw, you would be interested in dating this person. (Don't worry if you're in a relationship or not looking, this experiement is just to get a sense of how much information we are able to glean from that first impression). Then you'll get to view additional pictures of that person for as long as you'd like and then again decide "YES" or "NO" based on the additional information you extract from the images. 
 			</div>
-			<button class="btn btn-warning pull-right">Sounds good!</button>
+			<button class="btn btn-warning pull-right" ng-click="sounds_good = true">Sounds good!</button>
 		</div>
-		<div class="image_frame individual clearfix">
-			<img src="images/main.JPG">
-			<button class="btn btn-danger pull-left">No</button> <button class="btn btn-success pull-right">Yes</button>
+		<div ng-repeat="person in people">
+			<div class="image_frame individual clearfix" ng-show="sounds_good && first_vote && curr_person == $index">
+				<img ng-src="{{person.first}}">
+				<button class="btn btn-danger" ng-click="saveAVote($index,false)">No</button> 
+				<button class="btn btn-success" ng-click="saveAVote($index,true)">Yes</button>
+			</div>
+			<div class="image_frame many clearfix" ng-show="sounds_good && !first_vote && curr_person == $index"
+				ng-class="{'two':person.rest.length == 2, 'three': person.rest.length == 3, 'four': person.rest.length == 4, 
+				'five': person.rest.length == 5, 'six': person.rest.length == 6}">
+				<img ng-repeat="photo in person.rest" ng-src="{{photo}}">
+				<div class="button_wrapper">
+					<button class="btn btn-danger" ng-click="saveAVote($index,false)">No</button> 
+					<button class="btn btn-success" ng-click="saveAVote($index,true)">Yes</button>
+				</div>
+			</div>
 		</div>
+		<div class="image_frame final" ng-show="curr_person == 49">
+			That's all for now!
+			<br>
+			Thank you for your participation!
+		</div>
+
 	</body>
 </html>
