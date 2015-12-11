@@ -7,6 +7,7 @@ angular.module("tinderVotes",[])
 	$scope.first_is_yes = false;
 	$scope.first_is_no = false;
 	$scope.curr_person = 0;
+	$scope.ask_to_show = true;
 	
 	//set up parse
   Parse.initialize("vnjYSmOadA1Fiac07JWAtjsnBufIhBJsXrKzMO9b", "m2h50QKpVTO9CarRaEIvPGpj4jDQXb54deJprwVQ");
@@ -35,12 +36,20 @@ angular.module("tinderVotes",[])
 		    }
 	  	});
 	  	$scope.first_vote = true;
+	  	$scope.ask_to_show = true;
 	  	$scope.curr_person++;
 	  	console.log($scope.curr_person);
 	  	console.log("voted!");
   	}
 	  
   };
+  $scope.show_a_person = function(person){
+  	$scope.ask_to_show = false;
+  	setTimeout(function(){
+  		var image = $($('.main_image')[person]).css("opacity", "0");}, 150);
+
+  };
+
   $scope.people =[
 		{"first":"./images/P1/1.PNG","rest":["./images/P1/1.PNG","./images/P1/2.PNG"]},
 

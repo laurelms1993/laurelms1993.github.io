@@ -23,8 +23,14 @@
 			<button class="btn btn-warning pull-right" ng-click="sounds_good = true">Sounds good!</button>
 		</div>
 		<div ng-repeat="person in people">
-			<div class="image_frame individual clearfix" ng-show="sounds_good && first_vote && curr_person == $index">
-				<img ng-src="{{person.first}}">
+			<div class="image_frame start" ng-show="sounds_good && ask_to_show && curr_person == $index" >
+				
+				<button class="btn btn-warning" ng-click="show_a_person($index)"> Show me a person!</button> 
+				<div style="width:80%;margin: 10px auto;">The person will display as soon as you click the button above and disappear in 150 milliseconds. </div>
+				
+			</div>
+			<div class="image_frame individual clearfix" ng-show="!ask_to_show && sounds_good && first_vote && curr_person == $index">
+				<img class="main_image" ng-src="{{person.first}}">
 				<button class="btn btn-danger" ng-click="saveAVote($index,false)">No</button> 
 				<button class="btn btn-success" ng-click="saveAVote($index,true)">Yes</button>
 			</div>

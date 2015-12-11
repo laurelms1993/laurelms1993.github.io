@@ -50,6 +50,11 @@ body{
 	width: 100%;
 	border-radius: 3px;
 }
+.image_frame.start{
+	width: 350px;
+  height: 412px;
+  padding-top: 120px;
+}
 .image_frame .btn{
 	margin-top: 20px;
 	font-size: 20px;
