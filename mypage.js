@@ -4,8 +4,7 @@ angular.module("tinderVotes",[])
 .controller('tinderVotesController',["$scope", function($scope){
 	$scope.sounds_good = false;
 	$scope.first_vote = true;
-	$scope.first_is_yes = false;
-	$scope.first_is_no = false;
+	$scope.first_vote_val = false;
 	$scope.curr_person = 0;
 	$scope.ask_to_show = true;
 	
@@ -15,10 +14,11 @@ angular.module("tinderVotes",[])
   	console.log("entering");
   	if ($scope.first_vote){
   	 	if (vote){
-  	 		$scope.first_vote = true;
+  	 		$scope.first_vote_val = true;
+  	 		console.log("hello!");
   	 	}
   	 	else{
-  	 		$scope.first_vote = false;
+  	 		$scope.first_vote_val = false;
   	 	}
   	 	$scope.first_vote = false;
   	}
@@ -27,7 +27,7 @@ angular.module("tinderVotes",[])
   		var Votes = Parse.Object.extend("Votes");
   		var my_vote = new Votes();
 		  my_vote.set("person",person);
-		  my_vote.set("vote1",$scope.first_vote);
+		  my_vote.set("vote1",$scope.first_vote_val);
   		my_vote.set("vote2",vote);
 		  my_vote.save(null, {
 		    success: function(vote) {
@@ -46,10 +46,10 @@ angular.module("tinderVotes",[])
   $scope.show_a_person = function(person){
   	$scope.ask_to_show = false;
   	setTimeout(function(){
-  		var image = $($('.main_image')[person]).css("opacity", "0");}, 150);
+  		var image = $($('.main_image')[person]).css("opacity", "0");}, 200);
 
   };
-
+  $scope.randoms = 
   $scope.people =[
 		{"first":"./images/P1/1.PNG","rest":["./images/P1/1.PNG","./images/P1/2.PNG"]},
 
